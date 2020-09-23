@@ -1,0 +1,39 @@
+        -:    0:Source:cJSON-fuzzer.c
+        -:    0:Graph:cJSON-fuzzer.gcno
+        -:    0:Data:cJSON-fuzzer.gcda
+        -:    0:Runs:7860
+        -:    1:#include <stdio.h>
+        -:    2:
+        -:    3:#include "cJSON.h"
+        -:    4:
+     7860:    5:int main(int argc, char *argv[]){
+        -:    6:
+     7860:    7:	if(argc !=2){
+    #####:    8:		printf("Arg req\n");
+    #####:    9:		return 0;
+        -:   10:	}
+        -:   11:
+     7860:   12:	FILE *f = fopen(argv[1], "r");
+     7860:   13:	if(f==NULL){
+    #####:   14:		printf("Failed to open\n");
+    #####:   15:		return 0;
+        -:   16:	
+        -:   17:	}
+        -:   18:
+     7860:   19:	fseek(f, 0, SEEK_END);
+     7860:   20:	int file_length = ftell(f);
+     7860:   21:	printf("File length is: %d\n", file_length);
+     7860:   22:	char *file_buffer = malloc(file_length+1);
+     7860:   23:	fseek(f, 0, SEEK_SET);
+        -:   24:
+     7860:   25:	int read_elements = fread(file_buffer, file_length, 1, f);
+     7860:   26:	printf("Read %d elements\n", read_elements);
+     7860:   27:	file_buffer[file_length] = '\x00';
+        -:   28:
+     7860:   29:	cJSON *test = cJSON_Parse(file_buffer);
+     7860:   30:	if(test != NULL){
+     1600:   31:		printf("Success in loading!\n");
+        -:   32:	}else{
+     6260:   33:		printf("Failed to load!\n");
+        -:   34:	}
+        -:   35:}
