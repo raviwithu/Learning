@@ -1,0 +1,28 @@
+        -:    0:Source:mqtt-fuzzer.c
+        -:    0:Graph:mqtt-fuzzer.gcno
+        -:    0:Data:mqtt-fuzzer.gcda
+        -:    0:Runs:0
+        -:    1:#include<stdlib.h>
+        -:    2:#include<stdio.h>
+        -:    3:#include<string.h>
+        -:    4:
+        -:    5:#include "mqtt.h"
+        -:    6:
+    #####:    7:int main(int argc, char* argv[]){
+        -:    8:
+    #####:    9:    if(argc != 2){
+    #####:   10:        printf("Need atleast one argument");
+        -:   11:    }
+        -:   12:
+    #####:   13:    FILE *f = fopen(argv[1], "r");
+    #####:   14:    if(f == NULL){
+    #####:   15:        printf("Faile to open file \n");
+    #####:   16:        return 0;
+        -:   17:    }
+        -:   18:
+    #####:   19:    fseek(f, 0, SEEK_END);
+    #####:   20:    int file_length = ftell(f);
+    #####:   21:    printf("File length is :%d\n", file_length);
+    #####:   22:    char *file_buffer = malloc(file_length);
+    #####:   23:    fseek(f, 0 , SEEK_SET);
+    #####:   24:    fread(file_buffe
