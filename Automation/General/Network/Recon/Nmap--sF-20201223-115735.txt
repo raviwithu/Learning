@@ -1,0 +1,7 @@
+Nmap scan report for 10.0.0.69
+Host is up (0.0037s latency).
+All 65535 scanned ports on 10.0.0.69 are closed (65491) or open|filtered (44)
+MAC Address: DC:56:E7:56:BE:35 (Apple)
+
+Nmap done: 1 IP address (1 host up) scanned in 2129.57 seconds
+

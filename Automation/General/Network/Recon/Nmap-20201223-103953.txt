@@ -1,0 +1,15 @@
+Nmap scan report for 10.0.0.69
+Host is up (0.036s latency).
+Not shown: 65528 closed ports
+PORT      STATE SERVICE
+5000/tcp  open  upnp
+7000/tcp  open  afs3-fileserver
+7100/tcp  open  font-service
+49153/tcp open  unknown
+49392/tcp open  unknown
+52197/tcp open  unknown
+62078/tcp open  iphone-sync
+MAC Address: DC:56:E7:56:BE:35 (Apple)
+
+Nmap done: 1 IP address (1 host up) scanned in 2219.31 seconds
+
