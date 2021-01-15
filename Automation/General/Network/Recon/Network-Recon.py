@@ -1,6 +1,7 @@
-import subprocess, sys, os, time, datetime
+import subprocess, sys, os, time, datetime, signal, queue
+from multiprocessing import Process, Event, Queue
 from termcolor import colored
-
+iface = 'eth0'
 
 class bcolors:
     HEADER = '\033[95m'
@@ -21,19 +22,24 @@ if os.geteuid() != 0:
 
 #######################################################
 '''
-#The Follwoing functionality needs to be done
-    1. Identify TCP and UDP port script with slow scan
-        a.  Collect port open via SYN scan
-        b.  TCP connect
-        c.  ping sweep
-        d.  UDP scan
-        e.  FIN scan
-        f.  NULL scan
-        g.  XMAS scan
-        h.  Bounce scan
-        I.  RPC scan
-        J.  Windows Scan
-        K.  Idle scan
+#TO DO LIST
+    1. Identify TCP and UDP port script with slow scan and active stack fingerprinting
+        a.  SYN scan                        -       Included
+        b.  TCP connect                     -       Not cinluded(SYN scan is good enough)
+        c.  ping sweep                      -       NI
+        d.  UDP scan                        -       NI
+        e.  FIN scan                        -       Included
+        f.  NULL scan                       -       Included
+        g.  XMAS scan                       -       included
+        h.  Bounce scan                     -       NI
+        I.  RPC scan                        -       NI
+        J.  Windows Scan                    -       NI
+        K.  Idle scan                       -       NI
+        L.  TCP Reverse Ident Scan          -       NI
+        M.  UDP ICMP port scan              -       NI
+        N.  sctp scan                       -       Included (SCTP enabled machines, Telecom oriented machines carrying SS7 and SIGTRAN over IP)
+        O.  Maimon scan                     -       Included (BSD-derived systems simply drop the packet if the port is open)
+        P.  Protocol Scan                   -      Included 
 
     2. use nmap-vulners,vulscan,vuln to identify CVEs
         a.  To install vulscan follow below steps
@@ -45,6 +51,9 @@ if os.geteuid() != 0:
     3. Capture shell outputs logs and network packets logs using scapy
         a.  Use multithreading to capture 
     4. Filter required logs
+    5. Currently subprocess stout is piped and it can be written directly to a file. Refer
+    https://stackoverflow.com/questions/4856583/how-do-i-pipe-a-subprocess-call-to-a-text-file
+    Also use nmap command to directly output the stdout to a file.
 
 '''
 ######################################################
@@ -52,32 +61,36 @@ if os.geteuid() != 0:
 
 #process = subprocess.Popen(['echo', 'More output'],
 #                     stdout=subprocess.PIPE, 
+
 #                     stderr=subprocess.PIPE)
 #stdout, stderr = process.communicate()
 #print(stdout)
 #print(stderr)
 
-'''
-
-print("SYN Scan...")
-process = subprocess.run(['sudo', 'nmap','-sS','-p8000-8500',sys.argv[1]], 
-                         stdout=subprocess.PIPE, 
-                         universal_newlines=True)
-print(len(process.stdout))
-print("SYN scan done")
-print(process.stdout)
-
-'''
 
 list_port = []
 host_MAC_Addr = ''
 count = 0
 
 #array for doing different scan
-scan_array = ['-sS', '-sF', '-sX', '-sN', '-sW']
+scan_array = ['-sS', '-sF', '-sX', '-sN', '-sW', '-sM', '-sY', '-sO', '-sT', '-sU']
 
 
-#loop to do each scan
+def tcpdump_capture(exit_event, work_queue, filename_pcap):
+    while not exit_event.is_set():
+        try: work = work_queue.get(timeout=1.0)
+        except queue.Empty: continue
+
+        print("Starting tcpdump..")
+        p = subprocess.Popen(['sudo','tcpdump', '-i', iface, 'host', sys.argv[1],'-s', '65535',
+                  '-w', filename_pcap], stdout=subprocess.PIPE)
+
+    print("Stopping tcpcapture ...")
+    p.send_signal(subprocess.signal.SIGTERM)
+
+
+
+#loop for doing each scan
 for each_scan_options in scan_array:
 
     #creating log file with time stamp
@@ -87,12 +100,19 @@ for each_scan_options in scan_array:
     mode = 'a' if os.path.exists(filename) else 'w'
     file_desc = open(filename, mode) 
 
+
+    # starting time
+    start = time.time() 
+
+    print("Starting ", each_scan_options, " scan...")
     #open subproces for scan
-    process = subprocess.Popen(['sudo', 'nmap',each_scan_options,'-p-',sys.argv[1]],
+    process = subprocess.Popen(['sudo', 'nmap',each_scan_options,'-p-',sys.argv[1], '-e', iface],
                          stdout=subprocess.PIPE, 
                          stderr=subprocess.PIPE)
     #stdout, stderr = process.communicate()
-    print(process.stdout.readline())
+    #print(process.stdout.readline())
+    #print("Command passed is {}".format(process.args))
+
 
     #loop for readingout each stdout
     while True:
@@ -108,58 +128,118 @@ for each_scan_options in scan_array:
             #print("index find ", index_find)
             if index_find > 0:
                 if count == 0:
-                    #list_port.append(str(line.rstrip().decode('utf-8')[0:index_find]))
+                    if not str(line.rstrip().decode('utf-8')[0:index_find]) in list_port:
+                        list_port.append(str(line.rstrip().decode('utf-8')[0:index_find]))
                     count = count + 1
                 #print(str(line.rstrip().decode('utf-8')[0:index_find]))
 
                 else:
-                    list_port.append(str(line.rstrip().decode('utf-8')[0:index_find]))
+                    if not str(line.rstrip().decode('utf-8')[0:index_find]) in list_port:
+                        list_port.append(str(line.rstrip().decode('utf-8')[0:index_find]))
         if line.rstrip().decode('utf-8').find('Address:') > 0:
             #print(line.rstrip().decode('utf-8'))
             host_MAC_Addr = (line.rstrip().decode('utf-8')[line.rstrip().decode('utf-8').find('Address:')+len('Address:'):]).strip()
+    print(each_scan_options, " scan completed.")
     file_desc.close()
-'''
-file_desc.write(str(list_port))
-file_desc.write('\n')
-file_desc.write(str(host_MAC_Addr))
-file_desc.write('\n')
-'''
-'''
-for each_line in stdout.readline():
-    print(each_line)
-    if each_line.find('tcp') and each_line.find('/'):
-        index_find = each_line.find('/')
-        #print("index find ", index_find)
-        if index_find > 0:
-            print(index_find)
-            print(each_line[0:index_find])
+    
 
-'''
+    # end time
+    end = time.time()
+    # total time taken
+    print("Runtime for  ", str(each_scan_options), "scan is ", "{0:02.0f}:{1:02.0f}".format(*divmod((end - start) * 60, 60)))
 
 
-ts = time.time()
-suffix = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d-%H%M%S')
-filename = "Nmap-vulners-log" + str(suffix) + ".txt"
-mode = 'a' if os.path.exists(filename) else 'w'
-file_desc = open(filename, mode) 
+if not list_port:
+    print("No open/filtered ports are identified")
+    sys.exit()
+
+#iterating through each vulnerability scan
+vuln_scan_array = ['nmap-vulners', 'vul','vulscan']
+
+#loop through each vuln scan
+for each_scan in vuln_scan_array:
+
+    print("Creating file for vuln scanning logs")
+    ts = time.time()
+    suffix = datetime.datetime.fromtimestamp(ts).strftime('%Y%m%d-%H%M%S')
+    filename = "Nmap-" + each_scan + "-" + str(suffix) + ".txt"
+    filename_pcap = "Nmap-"+ each_scan + "-" + str(suffix) + ".pcap"
+    mode = 'a' if os.path.exists(filename) else 'w'
+    file_desc = open(filename, mode) 
 
 
-print("identified port - ", str(list_port))
-print("Running nmap-vulners script....")
-process = subprocess.run(['sudo', 'nmap','--script','nmap-vulners','-sV',sys.argv[1],'-p','22222'], 
-                         stdout=subprocess.PIPE, 
-                         universal_newlines=True)
-print(process.stdout)
+    length = len(list_port)
+    i = 0
+    list_ports=[]
+    
+
+    print("Creating list for identified ports")
+    while i < length:
+        if i == 0 :
+            list_ports = list_port[i]
+        else :
+            list_ports = list_ports + "," + list_port[i]
+        i = i + 1
+    print(list_ports)
+
+
+    #######################################################################################################
+    #section for initiating multiprocessing worker and queue for capturing network logs
+
+
+    # Save a reference to the original signal handler for SIGINT.
+    default_handler = signal.getsignal(signal.SIGINT)
+
+    # Set signal handling of SIGINT to ignore mode.
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+
+    exit_event = Event()
+    work_queue = Queue()
+
+
+    # Spawn the worker process.
+    cp= Process(target=tcpdump_capture, args=(exit_event, work_queue, filename_pcap),)
+    cp.start()
+
+    # Since we spawned all the necessary processes already,
+    # restore default signal handling for the parent process.
+    #signal.signal(signal.SIGINT, default_handler)
+
+
+    # Send some integers to the worker process.
+    work_queue.put(0)
+
+
+    ######################################################################################################
 
 
 
+    #Need to include logs capture to a file
+    print("identified port - ", str(list_ports))
+    print("Running nmap-vulners script....")
+    process = subprocess.Popen(['sudo', 'nmap','--script',each_scan,'-sV',sys.argv[1],'-p',list_ports, '-e', iface],
+                             stdout=subprocess.PIPE, 
+                             stderr=subprocess.PIPE)
+
+    while True:
+        line = process.stdout.readline()
+        file_desc.write(line.rstrip().decode('utf-8'))
+        file_desc.write("\n")
+        if not line:
+            break
+    file_desc.close()
+    
+
+    #####################################################################################################
+
+    #adding this sleep time to avoid slow spawning worker process. increase sleep time if tcpdump process kill command executed before process open
+    #time.sleep(1) #this may not be required for now since nmap scan will take time
+    exit_event.set()
+    cp.join()
 
 
 
-print("Running default NSE, vulnscan script....")
-process = subprocess.run(['sudo', 'nmap','--script','vuln,vulscan','-sV',sys.argv[1],'-p','22222'], 
-                         stdout=subprocess.PIPE, 
-                         universal_newlines=True)
-print(process.stdout)
-file_desc.close()
+    ####################################################################################################
+
 
