@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Compromise web Authentication</label>
+		<node refinement="conjunctive">
+			<label>Broken Authentication and session management</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: locate target/Victim</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>IMPORT Get_Access_To_Network_Service.xml</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>IMPORT Compromise_using_XSS_Attack.xml</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: Get session id</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Brute Force Authentication</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: Brute Force Attack</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Insecure Object reference</label>
+		</node>
+		<node refinement="disjunctive">
+			<label>Broken SQL Injection</label>
+			<node refinement="disjunctive">
+				<label>IMPORT COmpromise_using_SQLInjection</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Security Misconfiguration</label>
+		</node>
+	</node>
+</adtree>

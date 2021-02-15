@@ -1,0 +1,33 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Discover BD_ADDR</label>
+		<node refinement="disjunctive">
+			<label>Gather BDADDR passively</label>
+			<node refinement="conjunctive">
+				<label>Brute Force BD_ADDR</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Sniff BT packets</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Derive UAP from sniff data</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Brute force NAP with reduced search space of UAP and manufacturer</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>BT Sniffing for Advertisement packets</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Active Probing</label>
+			<node refinement="disjunctive">
+				<label>Import Get_Basic_Code_Execution</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Read BD_ADDR</label>
+			</node>
+		</node>
+	</node>
+</adtree>

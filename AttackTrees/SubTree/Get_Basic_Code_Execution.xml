@@ -1,0 +1,158 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Get Basic Code Execution</label>
+		<node refinement="conjunctive">
+			<label>Execute code from a remote position</label>
+			<node refinement="conjunctive">
+				<label>ADGENIMPORT Get_Remote_Code_Execution.xml</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Execute code from local access</label>
+			<node refinement="disjunctive">
+				<label>Gain local access to device</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Gain physical access to local interface</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Gain code exeuction through local interface</label>
+				<node refinement="disjunctive">
+					<label>Using device functions</label>
+					<node refinement="disjunctive">
+						<label>Abuse debug/development functionality</label>
+						<node refinement="disjunctive">
+							<label>Via USB</label>
+							<comment>Only care if IVI has USB interface</comment>
+							<node refinement="disjunctive">
+								<label>Via Android</label>
+								<node refinement="conjunctive">
+									<label>via ADB</label>
+									<node refinement="disjunctive">
+										<label>Attack Step: Enable ADB on target system</label>
+									</node>
+									<node refinement="disjunctive">
+										<label>Attack Step: Utilize ADB to upload/start malicious code</label>
+									</node>
+								</node>
+							</node>
+							<node refinement="disjunctive">
+								<label>via USB-Ethernet adapter</label>
+								<node refinement="conjunctive">
+									<label>Use remote login capability</label>
+									<node refinement="disjunctive">
+										<label>Attack Step: Login to system using SSH/Telnet</label>
+									</node>
+								</node>
+								<node refinement="conjunctive">
+									<label>Use debug access</label>
+									<node refinement="disjunctive">
+										<label>Use development service</label>
+										<node refinement="disjunctive">
+											<label>Attack Step: Send command via exposed DBus socket</label>
+										</node>
+										<node refinement="disjunctive">
+											<label>Via Linux</label>
+											<node refinement="disjunctive">
+												<label>via GDB Server</label>
+												<node refinement="disjunctive">
+													<label>Attack Step: Utilize GDB to upload/start malicious code</label>
+												</node>
+											</node>
+										</node>
+										<node refinement="disjunctive">
+											<label>Via QNX</label>
+											<node refinement="disjunctive">
+												<label>via QConn</label>
+												<node refinement="disjunctive">
+													<label>Attack Step: Utilize QConn to upload/start malicious code</label>
+												</node>
+											</node>
+											<node refinement="disjunctive">
+												<label>via QNET</label>
+												<node refinement="disjunctive">
+													<label>Attack Step: Send command via exposed QNET socket</label>
+												</node>
+											</node>
+										</node>
+									</node>
+								</node>
+							</node>
+						</node>
+					</node>
+					<node refinement="disjunctive">
+						<label>Alter system software integrity</label>
+						<node refinement="conjunctive">
+							<label>Code injection attack on local software service</label>
+							<node refinement="conjunctive">
+								<label>IMPORT Exploit_Code_Execution_Vulnerability.xml</label>
+							</node>
+						</node>
+						<node refinement="conjunctive">
+							<label>Via USB Software Update</label>
+							<comment>Only care about software update via USB</comment>
+							<node refinement="conjunctive">
+								<label>Abuse USB software update mechanism</label>
+								<node refinement="conjunctive">
+									<label>IMPORT Malicious_USB_SW_Update.xml</label>
+								</node>
+							</node>
+						</node>
+						<node refinement="conjunctive">
+							<label>Tamper with system files/scripts</label>
+							<node refinement="disjunctive">
+								<label>Attack Step: Copy malicious file from USB</label>
+							</node>
+							<node refinement="disjunctive">
+								<label>Attack Step: Exploit path traversal vulnerability</label>
+							</node>
+						</node>
+						<node refinement="disjunctive">
+							<label>Via Malicious OTA Update</label>
+							<node refinement="conjunctive">
+								<label>Abuse OTA software update mechanism</label>
+								<node refinement="conjunctive">
+									<label>Via WiFi</label>
+									<node refinement="conjunctive">
+										<label>Install backdoored update package</label>
+										<node refinement="conjunctive">
+											<label>IMPORT Install_Backdoored_Update.xml</label>
+										</node>
+									</node>
+									<node refinement="disjunctive">
+										<label>Gain access to wireless interface</label>
+										<node refinement="disjunctive">
+											<label>ADGENIMPORT Gain_Access_to_WiFi_Interface.xml</label>
+										</node>
+									</node>
+									<node refinement="conjunctive">
+										<label>Attack Step: Man-in-the-middle OTA backened communication</label>
+									</node>
+								</node>
+								<node refinement="conjunctive">
+									<label>Via Bluetooth</label>
+									<node refinement="conjunctive">
+										<label>Install backdoored update package</label>
+										<node refinement="conjunctive">
+											<label>IMPORT Install_Backdoored_Update.xml</label>
+										</node>
+									</node>
+									<node refinement="disjunctive">
+										<label>Gain access to Bluetooth interface</label>
+										<node refinement="disjunctive">
+											<label>ADGENIMPORT Gain_Access_to_Bluetooth_Interface.xml</label>
+										</node>
+										<node refinement="conjunctive">
+											<label>Attack Step: Man-in-the-middle OTA backened communication</label>
+										</node>
+									</node>
+								</node>
+							</node>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

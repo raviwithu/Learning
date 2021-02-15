@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Compromise software update</label>
+		<node refinement="conjunctive">
+			<label>Install backdoored update</label>
+			<node refinement="conjunctive">
+				<label>Obtain update file image</label>
+				<node refinement="conjunctive">
+					<label>IMPORT Obtain_binary_Copy_Software.xml</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Insert backdoor into update image</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Reverse engineer update image format</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Add malicious code into update image</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Bypass software update authentication</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Bypass software update authentication</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Bypass software update integrity</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Bypass software update integrity</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Time of check to time of use attack</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Bypass software update authorization</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Bypass software update authorization</label>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

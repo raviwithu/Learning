@@ -1,0 +1,73 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Install malicious software</label>
+		<node refinement="disjunctive">
+			<label>Via malicious firmware update</label>
+			<node refinement="conjunctive">
+				<label>Wireless</label>
+				<node refinement="conjunctive">
+					<label>ADGENIMPORT Malicious_OTA_SW_Update.xml</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Local</label>
+				<node refinement="conjunctive">
+					<label>ADGENIMPORT Malicious_USB_SW_Update.xml</label>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Via malicious app update</label>
+			<node refinement="disjunctive">
+				<label>On Device</label>
+				<node refinement="conjunctive">
+					<label>Android</label>
+					<node refinement="disjunctive">
+						<label>Via Android</label>
+						<comment>If Android is being used on either the IVI unit</comment>
+						<node refinement="conjunctive">
+							<label>Over USB</label>
+							<node refinement="disjunctive">
+								<label>ADGENIMPORT Get_Basic_Code_Execution.xml</label>
+							</node>
+							<node refinement="conjunctive">
+								<label>Attack Step: Enable adb</label>
+							</node>
+							<node refinement="disjunctive">
+								<label>Attack Step: Install Malicious app</label>
+							</node>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Persistence through code execution</label>
+			<node refinement="disjunctive">
+				<label>ADGENIMPORT Get_Basic_Code_Execution.xml</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Persist code execution</label>
+				<node refinement="disjunctive">
+					<label>Attack Step: Write malware to file in startup directory</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Write malware to file and register an auto-start hook</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Write to file system</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Add startup hook e.g. .bashrc cron job etc.</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Compromise existing system or app</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Overwrite app/system file with allowed privileges.</label>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

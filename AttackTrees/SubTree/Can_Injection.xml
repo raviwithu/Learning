@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Can Injection</label>
+		<node refinement="conjunctive">
+			<label>Read CAN message</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: Bind to interface</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: Read CAN Message</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Write message</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: Bind to interface</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: Craft CAN Message</label>
+			</node>
+		</node>
+	</node>
+</adtree>

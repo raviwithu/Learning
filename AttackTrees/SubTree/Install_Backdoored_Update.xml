@@ -1,0 +1,24 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Install backdoored update</label>
+		<node refinement="conjunctive">
+			<label>Install backdoored update package</label>
+			<node refinement="disjunctive">
+				<label>Obtain update file image</label>
+				<node refinement="disjunctive">
+					<label>ADGENIMPORT Obtain_System_Software_Binary.xml</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Insert backdoor into update image</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Reverse engineer update image format</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Add malicious code into update image</label>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

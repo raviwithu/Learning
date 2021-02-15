@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Gain Access to WiFi</label>
+		<node refinement="conjunctive">
+			<label>AS WiFi Client</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: Discover SSID</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: Connect to target SSID</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>AS WiFi AP</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: Set up rouge AP</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Force target to connet to rouge AP</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: WiFi deauth attack</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: WiFi RF Jamming of viictim AP to force cliet to rogue</label>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>As WiFi direct</label>
+			<node refinement="disjunctive">
+				<label>Attack Step: Discover WiFi direct network</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Attack Step: Initiate WPS pairing</label>
+			</node>
+		</node>
+	</node>
+</adtree>

@@ -1,0 +1,54 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Compromise via Physical Access</label>
+		<node refinement="conjunctive">
+			<label>Via onboard interface</label>
+			<node refinement="disjunctive">
+				<label>Via USB</label>
+				<node refinement="conjunctive">
+					<label>Via Fimrware update</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Flash firmware via USB</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Enable flashing via USB</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>IMPORT Get_Basic_Code_Execution</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via Flash</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Gain Access to Flash chip pins</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Flash\Dump Data from Flash chip</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>via JTAG</label>
+				<node refinement="disjunctive">
+					<label>Attack Step: Gain access to JTAG port</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: Flash\Dump firmware over JTAG</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via Serial port</label>
+				<node refinement="conjunctive">
+					<label>Via UART</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Gain access to UART programming port</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Flash\Dump firmware over UART</label>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

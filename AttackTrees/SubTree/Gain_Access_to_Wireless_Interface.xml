@@ -1,0 +1,48 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Gain access to wireless interface</label>
+		<node refinement="disjunctive">
+			<label>Gain access to wireless interface</label>
+			<node refinement="disjunctive">
+				<label>via WiFi</label>
+				<node refinement="disjunctive">
+					<label>ADGENIMPORT Gain_Access_to_WiFi_Interface.xml</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>via Cellular</label>
+				<node refinement="disjunctive">
+					<label>ADGENIMPORT Gain_Access_to_Cellular_Interface.xml</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>via Bluetooth</label>
+				<node refinement="disjunctive">
+					<label>ADGENIMPORT Gain_Access_to_BT_Interface.xml</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>via NFC</label>
+				<node refinement="conjunctive">
+					<label>Via NFC</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Get within NFC range of target</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Utilize rogue NFC device</label>
+					</node>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via IR</label>
+				<node refinement="disjunctive">
+					<label>Via Barcode Scanner</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via RFID</label>
+			</node>
+		</node>
+	</node>
+</adtree>

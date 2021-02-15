@@ -1,0 +1,141 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Get Access to Web Sever</label>
+		<node refinement="disjunctive">
+			<label>Via login access</label>
+			<node refinement="conjunctive">
+				<label>Steal credentials</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Brute Force attempts for web access</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via SQL injection</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Perform SQL injection to bypass authentication</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via session cookies</label>
+				<node refinement="disjunctive">
+					<label>via weak sessions</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Intercept and steal cookies from user</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: predictable session id</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Session fixation</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: MITM attack</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Attack Step: Lack of Authentication</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Via site data</label>
+			<node refinement="conjunctive">
+				<label>Via MITM</label>
+				<node refinement="disjunctive">
+					<label>Attack Step: MITM attack</label>
+					<node refinement="disjunctive">
+						<label>Via Proxy</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: MITM Attach - Forward Proxies</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: MITM Attach - reverse Proxies</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: MITM Attach - Transparent Proxies</label>
+						</node>
+					</node>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via injection</label>
+				<node refinement="disjunctive">
+					<label>via SQL injection</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: manipulate data through SQL injection</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>via XSS</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: manipulate data through XSS attacks</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: Manipulate via reflected XSS</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Manipulate via stored XSS</label>
+						</node>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Via Web crawling</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Web crawling to identify all respurces and functionality</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Via HTTP injection</label>
+					<node refinement="disjunctive">
+						<label>Attack step: Intercept HTTP/HTTPS communication and alter data</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: HTTP method injection</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: HTTP header injection</label>
+						</node>
+					</node>
+				</node>
+				<node refinement="conjunctive">
+					<label>via command injection</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: identify parameters to inject data</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Command injection via web parameters</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Via File injection</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: injection via file name</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Injection via file size</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: injection via file type</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: bypassing file upload restructions</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Arbitary File upload without authentication</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: injection via file contents</label>
+					</node>
+				</node>
+				<node refinement="conjunctive">
+					<label>Via XML injection</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: identify XPath for injection</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: XML injection via xpath</label>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>
