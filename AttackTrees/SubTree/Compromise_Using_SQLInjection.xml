@@ -1,0 +1,15 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>COmpromise using SQL Injection</label>
+		<node refinement="conjunctive">
+			<label>Enumerate SQL version</label>
+		</node>
+		<node refinement="conjunctive">
+			<label>Attack Step: Search vulnerable pattern</label>
+		</node>
+		<node refinement="conjunctive">
+			<label>Attack Step: inject Attack Script</label>
+		</node>
+	</node>
+</adtree>

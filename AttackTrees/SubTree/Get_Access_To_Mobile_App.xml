@@ -1,0 +1,87 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Get Access to mobile APP</label>
+		<node refinement="conjunctive">
+			<label>Mobile APP</label>
+			<node refinement="disjunctive">
+				<label>IOS APP</label>
+				<node refinement="disjunctive">
+					<label>Via Application</label>
+					<node refinement="disjunctive">
+						<label>Analyze IOS APP</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in RAM\memory in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in cache in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Decryption of keychain in IOS APP</label>
+						</node>
+					</node>
+					<node refinement="conjunctive">
+						<label>Attack Step: Analyze Data flow</label>
+					</node>
+				</node>
+				<node refinement="conjunctive">
+					<label>Via API</label>
+					<node refinement="conjunctive">
+						<label>Attack Step: Insecure API analyze in IOS APP</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>via filesystem</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Sensitive File Artifacts</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in log file in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in external memory in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in DB in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Data stored in Application directory in IOS APP</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: No\Weak data Encryption in IOS APP</label>
+						</node>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>via runtime analysis</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Method swizzling runtime analysis in IOS APP</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Via Network</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: No\Weak network Encryption in IOS APP</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Via Reversing ipa</label>
+					<node refinement="disjunctive">
+						<label>Attack Step: Static code analyze unecrypted IPA file</label>
+					</node>
+					<node refinement="conjunctive">
+						<label>Static Code analyze encrypted IPA file</label>
+						<node refinement="disjunctive">
+							<label>Attack Step: Identify vmaddr of text segment</label>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Static code analyze unecrypted IPA file</label>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>ADGENIMPORT Exploit_Code_Execution_Vulnerability.xml</label>
+		</node>
+	</node>
+</adtree>

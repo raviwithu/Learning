@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Compromise_using_XSS_Attack</label>
+		<node refinement="conjunctive">
+			<label>Locate Vulnerability</label>
+			<node refinement="conjunctive">
+				<label>Attack Step: serach vuln patterns</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: idenitfy unpatched SW</label>
+			</node>
+			<node refinement="conjunctive">
+				<label>Attack Step: Analyze Err mesage</label>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Attack Step: Inject Attack script</label>
+		</node>
+	</node>
+</adtree>

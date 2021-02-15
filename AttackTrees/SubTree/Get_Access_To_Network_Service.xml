@@ -1,0 +1,121 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Subtree: Get Access to network service</label>
+		<node refinement="conjunctive">
+			<label>Network service scanning</label>
+			<node refinement="disjunctive">
+				<label>TCP Scan</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: SYN SCAN</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: ACK SCAN</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Attack Step: Connect SCAN</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: FIN stealth scan</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: Xmas stealth scan</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: null stealth scan</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: Windows scan</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: RPC scan</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: version detecction scan</label>
+				</node>
+			</node>
+		</node>
+		<node refinement="conjunctive">
+			<label>Information gathering</label>
+		</node>
+		<node refinement="disjunctive">
+			<label>Setting up rougue server</label>
+			<node refinement="disjunctive">
+				<label>Via DHCP</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: DHCP spoofing</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via ARP</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: ARP spoofing</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via DNS</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: DNS spoofing</label>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Gain access through network service</label>
+			<node refinement="disjunctive">
+				<label>Via MQTT Client</label>
+				<node refinement="conjunctive">
+					<label>Insecure MQTT</label>
+					<node refinement="conjunctive">
+						<label>Injection via Broker</label>
+						<node refinement="conjunctive">
+							<label>Attack Step: MITM with MQTT Broker</label>
+						</node>
+						<node refinement="conjunctive">
+							<label>Attack Step: injection via CONNECTACK response</label>
+						</node>
+					</node>
+					<node refinement="conjunctive">
+						<label>Attack Step: Sniff Authentication to MQTT Broker</label>
+						<comment>check for authentication in clear text</comment>
+					</node>
+				</node>
+				<node refinement="conjunctive">
+					<label>Secure MQTT</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Via MLLP client</label>
+				<node refinement="conjunctive">
+					<label>Injecting HL7 or json message</label>
+					<node refinement="conjunctive">
+						<label>Attack Step: Spoof HL7 message</label>
+					</node>
+					<node refinement="conjunctive">
+						<label>Attack Step: Inject or modify HL7 data</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: MLLP MITM Attack</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via TLS</label>
+				<node refinement="conjunctive">
+					<label>Attack Step: Sniff TLS connection</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>TLS attacks</label>
+					<node refinement="conjunctive">
+						<label>Attack Step: TLS downgrade</label>
+					</node>
+					<node refinement="conjunctive">
+						<label>Attack Step:Fake TLS certificate</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Attack Step: Analyze improper TLS validation</label>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

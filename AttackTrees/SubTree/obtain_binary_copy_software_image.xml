@@ -1,0 +1,21 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Obtain binary copy of system software</label>
+		<node refinement="disjunctive">
+			<label>Obtain software update package</label>
+			<node refinement="disjunctive">
+				<label>Attack Step: Obtain software from public portal</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Attack Step: Obtain software from non-public portal</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Dump firmware of device</label>
+			<node refinement="disjunctive">
+				<label>Attack Step: Extract firmware from flash memory</label>
+			</node>
+		</node>
+	</node>
+</adtree>

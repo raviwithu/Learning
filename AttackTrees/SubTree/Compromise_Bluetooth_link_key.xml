@@ -1,0 +1,30 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Compromise Bluetooth link key</label>
+		<node refinement="disjunctive">
+			<label>IMPORT Discover_BDADDR.xml</label>
+		</node>
+		<node refinement="disjunctive">
+			<label>Steal Bluetooth link key</label>
+			<node refinement="conjunctive">
+				<label>via active pairing process</label>
+				<node refinement="disjunctive">
+					<label>Attack Step: Brute force Temporary key</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: Sniff Short term key</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Via target device</label>
+				<node refinement="disjunctive">
+					<label>IMPORT Get_Basic_Code_Execution.xml</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Attack Step: Steal Bluetooth link key</label>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

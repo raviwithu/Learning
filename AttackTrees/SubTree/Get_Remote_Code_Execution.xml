@@ -1,0 +1,60 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Subtree: Get Remote Code Execution</label>
+		<node refinement="disjunctive">
+			<label>Gain code execution through a remote interface</label>
+			<node refinement="disjunctive">
+				<label>Alter system software integrity</label>
+				<node refinement="disjunctive">
+					<label>Code injection attack on remotely accessible software</label>
+					<node refinement="conjunctive">
+						<label>Exploit code execution bug in remote software service</label>
+						<node refinement="conjunctive">
+							<label>ADGENIMPORT Exploit_Code_Execution_Vulnerability.xml</label>
+						</node>
+						<node refinement="conjunctive">
+							<label>ADGENIMPORT Gain_Access_to_Wireless_Interface.xml</label>
+						</node>
+					</node>
+					<node refinement="conjunctive">
+						<label>Exploit code execution bug in system device driver</label>
+						<node refinement="conjunctive">
+							<label>Exploit code execution bug in wireless IC</label>
+							<node refinement="conjunctive">
+								<label>ADGENIMPORT Exploit_Code_Execution_Vulnerability.xml</label>
+							</node>
+						</node>
+						<node refinement="conjunctive">
+							<label>Exploit code execution bug in system device driver</label>
+							<node refinement="conjunctive">
+								<label>ADGENIMPORT Exploit_Code_Execution_Vulnerability.xml</label>
+							</node>
+						</node>
+						<node refinement="conjunctive">
+							<label>ADGENIMPORT Gain_Access_to_Wireless_Interface.xml</label>
+						</node>
+					</node>
+				</node>
+				<node refinement="conjunctive">
+					<label>Abuse OTA software update mechanism</label>
+					<node refinement="conjunctive">
+						<label>OTA Software update</label>
+						<node refinement="conjunctive">
+							<label>ADGENIMPORT Malicious_OTA_SW_Update.xml</label>
+						</node>
+					</node>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Abuse debug/development functionality</label>
+				<node refinement="conjunctive">
+					<label>ADGENIMPORT Gain_Access_to_Wireless_Interface.xml</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>ADGENIMPORT Utilize_Remote_Debug_Capability.xml</label>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

@@ -1,0 +1,60 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Utilize remote debug capability</label>
+		<node refinement="disjunctive">
+			<label>Utilize debug capability</label>
+			<node refinement="conjunctive">
+				<label>Use Remote Login capability</label>
+				<node refinement="disjunctive">
+					<label>Attack Step: Login to system using SSH/Telnet</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Use debug service</label>
+				<node refinement="disjunctive">
+					<label>Used exposed debug service</label>
+					<node refinement="disjunctive">
+						<label>Via QNX</label>
+						<node refinement="disjunctive">
+							<label>via QConn</label>
+							<node refinement="disjunctive">
+								<label>Attack Step: Utilize QConn to upload/start malicious code</label>
+							</node>
+						</node>
+						<node refinement="disjunctive">
+							<label>via QNET</label>
+							<node refinement="disjunctive">
+								<label>Attack Step: Send command via exposed QNET socket</label>
+							</node>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Send command via exposed DBus socket</label>
+						</node>
+					</node>
+					<node refinement="disjunctive">
+						<label>via linux</label>
+						<node refinement="disjunctive">
+							<label>via GDB Server</label>
+							<node refinement="disjunctive">
+								<label>Attack Step: Utilize GDB to upload/start malicious code</label>
+							</node>
+						</node>
+						<node refinement="disjunctive">
+							<label>Attack Step: Send command via exposed DBus socket</label>
+						</node>
+					</node>
+					<node refinement="disjunctive">
+						<label>Via RTOS</label>
+						<node refinement="disjunctive">
+							<label>Via on-chip Debugging</label>
+							<node refinement="disjunctive">
+								<label>Attack Step: Utilize on-chip debugger to upload/start malicious code</label>
+							</node>
+						</node>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

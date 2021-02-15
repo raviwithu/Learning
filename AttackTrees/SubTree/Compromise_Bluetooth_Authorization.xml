@@ -1,0 +1,69 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="conjunctive">
+		<label>Compromise BT Authorization</label>
+		<node refinement="disjunctive">
+			<label>Compromise Authorization</label>
+			<node refinement="disjunctive">
+				<label>Pair without Authorization</label>
+				<node refinement="conjunctive">
+					<label>Use no pairing mode</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>ByPass Authroization</label>
+					<node refinement="conjunctive">
+						<label>Inject BT Packets</label>
+					</node>
+					<node refinement="conjunctive">
+						<label>Exploit BT Vulnerability</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>IMPORT Discover_ BD_ADDR</label>
+					</node>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Pair with Evil Twin</label>
+				<node refinement="conjunctive">
+					<label>Sniff\Steal paired device BD_ADDR</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Get user to pair BT with evil twin device</label>
+				</node>
+				<node refinement="conjunctive">
+					<label>Inject\Read BT packets</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Use existing pairing</label>
+				<node refinement="conjunctive">
+					<label>Import Compromise_Bluetooth_link_key</label>
+				</node>
+			</node>
+			<node refinement="conjunctive">
+				<label>Exploit weak pairing mode</label>
+				<node refinement="conjunctive">
+					<label>Downgrade security mode</label>
+					<node refinement="disjunctive">
+						<label>Inject BT packets</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>Exploit BT protocol vulnerability</label>
+					</node>
+				</node>
+				<node refinement="disjunctive">
+					<label>Crack weak link key</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Durning Authorization</label>
+				<node refinement="disjunctive">
+					<label>Obtain PIN</label>
+					<node refinement="disjunctive">
+						<label>Sniff MTIM numeric compare</label>
+					</node>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>
