@@ -1,0 +1,98 @@
+var module_name = "mqtt";
+offset = '0x11316';
+var funFun = ptr(Module.findBaseAddress(module_name)).add(offset);
+var f = new NativeFunction(funFun, 'int', ['pointer']);
+Interceptor.attach(funFun, {
+onEnter: function(args) {
+console.log("mqtt_unpack_response called");
+},
+onLeave: function (retval) {
+    console.log("return value -" + retval)
+    }
+});
+
+Module.enumerateImportsSync('mqtt').forEach( function (elem) { console.log(elem['name']); });
+DebugSymbol.fromName('main')
+
+
+var mqtt_unpack_uint16_ptr = ptr(DebugSymbol.fromName("__mqtt_unpack_uint16"));
+var mqtt_unpack_uint16_fun = new NativeFunction(mqtt_unpack_uint16_ptr, 'int', ['pointer']);
+Interceptor.attach(mqtt_unpack_uint16_ptr, {
+onEnter: function(args) {
+console.log("mqtt_unpack_uint16 called");
+console.log("Arg[1]" - args[0]);
+},
+onLeave: function (retval) {
+    console.log("mqtt_unpack_uint16 return value -" + retval)
+    }
+});
+
+
+
+
+var mqtt_unpack_uint16_fun = new NativeFunction(mqtt_unpack_uint16_ptr, 'int', ['pointer']);
+
+var mqtt_unpack_uint16_ptr = ptr(DebugSymbol.fromName("__mqtt_unpack_uint16").address);
+Interceptor.attach(DebugSymbol.fromName("__mqtt_unpack_uint16").address, {
+onEnter(args) {
+    console.log("mqtt_unpack_response called");
+	console.log("Arg[1]" - args[0]);
+  },
+  onLeave(retval) {
+    if (retval.toInt32() > 0) {
+      console.log("mqtt_unpack_uint16 return value -" + retval)
+    }
+  }
+});
+
+
+var module_name = "mqtt";
+offset = '0x11805';
+var funFun = ptr(Module.findBaseAddress(module_name)).add(offset);
+//var f = new NativeFunction(funFun, 'int', ['pointer']);
+Interceptor.attach(funFun, {
+onEnter: function(args) {
+console.log("mqtt_unpack_response called");
+},
+onLeave: function (retval) {
+    console.log("return value -" + retval)
+    }
+});
+
+
+
+function StalkerExeample() 
+{
+	var threadIds = [];
+	Process.enumerateThreads({
+		onMatch: function (thread) 
+		{
+			threadIds.push(thread.id);
+			console.log("Thread ID: " + thread.id.toString());
+		},
+		onComplete: function () 
+		{
+			threadIds.forEach(function (threadId) 
+				{
+					Stalker.follow(threadId, 
+					{
+						events: {call: true},
+					
+					onReceive: function (events)
+					{
+						console.log("onReceive called.");
+					},
+					onCallSummary: function (summary)
+					{
+						console.log("onCallSummary called.");
+						//console.log("Sumaary - " + summary);
+						 Object.keys(summary).forEach(function (target) {
+						  var name = DebugSymbol.fromAddress(ptr(target)).toString();
+						   console.log("name - " + name);
+						 });
+					}
+				});
+			});
+		}
+	});
+}
