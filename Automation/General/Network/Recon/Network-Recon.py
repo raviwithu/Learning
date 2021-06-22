@@ -74,6 +74,7 @@ count = 0
 
 #array for doing different scan
 scan_array = ['-sS', '-sF', '-sX', '-sN', '-sW', '-sM', '-sY', '-sO', '-sT', '-sU']
+#scan_array = ['-Pn']
 
 
 def tcpdump_capture(exit_event, work_queue, filename_pcap):
