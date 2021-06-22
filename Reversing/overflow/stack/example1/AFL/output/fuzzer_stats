@@ -1,0 +1,30 @@
+start_time        : 1624329250
+last_update       : 1624329431
+fuzzer_pid        : 22570
+cycles_done       : 43
+execs_done        : 2855
+execs_per_sec     : 16.69
+paths_total       : 1
+paths_favored     : 1
+paths_found       : 0
+paths_imported    : 0
+max_depth         : 1
+cur_path          : 0
+pending_favs      : 0
+pending_total     : 0
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 0.00%
+unique_crashes    : 1
+unique_hangs      : 0
+last_path         : 0
+last_crash        : 1624329290
+last_hang         : 0
+execs_since_crash : 2254
+exec_timeout      : 140
+afl_banner        : stackoverflow_afl
+afl_version       : 2.57b
+target_mode       : default
+command_line      : afl-fuzz -i testcase -o output ./stackoverflow_afl @@
+slowest_exec_ms   : 133
+peak_rss_mb       : not available while afl is running

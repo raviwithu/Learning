@@ -13,9 +13,11 @@ int functionFunction(char * param)
 }
 int LLVMFuzzerTestOneInput(const uint8_t *Data, size_t Size) {
 //int main(int argc, char* argv[]){
-	char* localString = "main function";
-	int localInt = 0x11223344;
-	//functionFunction(argv[1]);
-	functionFunction(Data);
-	return 0;
+	if(Size > 5) { 
+		char* localString = "main function";
+		int localInt = 0x11223344;
+		//functionFunction(argv[1]);
+		functionFunction(Data);
+		return 0;
+	}
 }
