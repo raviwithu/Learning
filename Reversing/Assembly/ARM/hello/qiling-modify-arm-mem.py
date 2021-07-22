@@ -9,7 +9,8 @@ def hook_syscall(ql):
     print("r1 = %s"% ql.mem.read(ql.reg.r1,0x7))
     print("r2 = %d" %ql.reg.read("r2"))
     ql.mem.write(ql.reg.r1,modified_string)
-    ql.reg.write("r2", len(modified_string))
+    print(type(len(modified_string)))
+    ql.reg.write("r2", len(modified_string)) #Need to look into this, reg.write)
     print("r1 = %s"% ql.mem.read(ql.reg.r1,ql.reg.r2))
     print("r2 = %d" %ql.reg.read("r2"))
 
