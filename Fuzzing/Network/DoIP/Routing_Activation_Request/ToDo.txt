@@ -1,0 +1,12 @@
+Things to add , monitor ping request and response time
+Add incremental steps
+
+def target_alive():
+    response = os.system("ping -c 1 " + target_ip)
+    if response == 0:
+        return True
+    else:
+        return False
+
+Add Reserved by ISO long length
+Add reserved by OEM length really long
