@@ -1,0 +1,2 @@
+ sudo apt-get install qemu-system-arm qemu-efi
+ https://jasonblog.github.io/note/arm_emulation/compiling_linux_kernel_for_qemu_arm_emulator.html

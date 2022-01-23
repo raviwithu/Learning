@@ -1,0 +1,187 @@
+<?xml version='1.0'?>
+<adtree>
+	<node refinement="disjunctive">
+		<label>Compromise via XML</label>
+		<comment>Refer: https://ws-attacks.org/Welcome_to_WS-Attacks</comment>
+		<node refinement="disjunctive">
+			<label>SOAP Attacks</label>
+			<node refinement="conjunctive">
+				<label>SOAP Action Spoofing</label>
+				<comment>Refer: https://ws-attacks.org/SOAPAction_Spoofing</comment>
+			</node>
+			<node refinement="conjunctive">
+				<label>Replay Attacks</label>
+				<comment>Refer: https://ws-attacks.org/Replay_Attack</comment>
+			</node>
+			<node refinement="disjunctive">
+				<label>WSDL Enumeration</label>
+				<comment>Refer: https://ws-attacks.org/WSDL_Disclosure</comment>
+			</node>
+			<node refinement="disjunctive">
+				<label>SOAP Parameter DOS</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>SOAP Array Attack</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>XML Signature Attacks</label>
+			<node refinement="conjunctive">
+				<label>XSLT Code Execution</label>
+				<comment>Refer: https://ws-attacks.org/XML_Signature_%E2%80%93_XSLT_Code_Execution</comment>
+			</node>
+			<node refinement="conjunctive">
+				<label>[XSLT Signature - Key Retrieval XSA	]</label>
+				<comment>https://ws-attacks.org/XML_Signature_-_Key_Retrieval_XSA_(Cross_Site_Attack)</comment>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML Signature Exclusion</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML Signature wrapping</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>DOS</label>
+				<node refinement="disjunctive">
+					<label>Key Retrieval DOS</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Transformation DOS</label>
+					<comment>Refer: https://ws-attacks.org/XML_Encryption_-_Transformation_DOS</comment>
+					<node refinement="disjunctive">
+						<label>C14N DOS</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>XSLT DOS</label>
+					</node>
+					<node refinement="disjunctive">
+						<label>XPATH DOS</label>
+					</node>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Misc</label>
+			<node refinement="disjunctive">
+				<label>[Attack Obfuscation		]</label>
+				<comment>Refer: https://ws-attacks.org/Attack_Obfuscation</comment>
+			</node>
+			<node refinement="disjunctive">
+				<label>Metadata Spoofing</label>
+				<comment>Refer: https://ws-attacks.org/Metadata_Spoofing</comment>
+				<node refinement="disjunctive">
+					<label>WSDL Spoofing</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>WS security policy Spoofing</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Active WS-MITM</label>
+				<node refinement="disjunctive">
+					<label>Malicious Morphing</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Routing Detour</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>Passive WS -MITM</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Corecive Parsing</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>XSLT Attack</label>
+			<node refinement="disjunctive">
+				<label>Cross-Site scripting</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Arbitary File Read</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Code Execution</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>SSRF</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Data Exfiltration &amp; XXE</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>Oversize XML Attack</label>
+			<node refinement="disjunctive">
+				<label>Oversize SOAP Attack</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Oversized SOAP Body</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Oversized SOAP Envelope</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML Extra Long Names</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML namespace prefix attack</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML oversized Attribute Content</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML oversized attribute count</label>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>SAML XML injection</label>
+			<comment>Refer: https://research.nccgroup.com/2021/03/29/saml-xml-injection/</comment>
+		</node>
+		<node refinement="disjunctive">
+			<label>XML External Entities</label>
+			<node refinement="disjunctive">
+				<label>General XXE</label>
+				<node refinement="disjunctive">
+					<label>Simple Payload Processing</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Base64 Payload Processing</label>
+				</node>
+			</node>
+		</node>
+		<node refinement="disjunctive">
+			<label>XXE with injection</label>
+		</node>
+		<node refinement="disjunctive">
+			<label>XPATH injection</label>
+		</node>
+		<node refinement="disjunctive">
+			<label>DOS</label>
+			<node refinement="disjunctive">
+				<label>XML Entity Expansion</label>
+				<node refinement="disjunctive">
+					<label>Billion Laugh Attack</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Quadratic Blowup Attack</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Recursive Entity reference</label>
+				</node>
+			</node>
+			<node refinement="disjunctive">
+				<label>XML flooding</label>
+			</node>
+			<node refinement="disjunctive">
+				<label>Reference redirect attack</label>
+				<node refinement="disjunctive">
+					<label>Signature redirect</label>
+				</node>
+				<node refinement="disjunctive">
+					<label>Encryption redirect</label>
+				</node>
+			</node>
+		</node>
+	</node>
+</adtree>

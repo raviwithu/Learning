@@ -1,0 +1,4 @@
+# environment variables:
+AFL_KILL_SIGNAL=9
+# command line:
+'./afl-fuzz' '-O' '-i' '/mnt/hgfs/D/Work/mygithub/Learning/Reversing/overflow/stack/example1/AFL_qemu/input/' '-o' '/mnt/hgfs/D/Work/mygithub/Learning/Reversing/overflow/stack/example1/afl_frida/output_0105_0858/' '--' '/mnt/hgfs/D/Work/mygithub/Learning/Reversing/overflow/stack/example1/AFL/stackoverflow_afl' '@@'

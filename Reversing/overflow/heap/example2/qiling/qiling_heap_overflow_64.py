@@ -34,7 +34,8 @@ def inst_after_strcpy(ql):
 payload = "A" * 10
 path = [sys.argv[1], payload]
 rootfs1 = "/"
-ql = Qiling(argv = path, rootfs=rootfs1, verbose=QL_VERBOSE.OFF)
+#ql = Qiling(argv = path, rootfs=rootfs1, verbose=QL_VERBOSE.OFF)
+ql = Qiling(argv = path, rootfs=rootfs1)
 #0x56556215 instruction after strcpy
 ql.hook_address(callback=inst_after_strcpy, address=0x5555555551a0)
 ql.hook_address(callback=inst_after_1st_malloc, address=0x55555555516e)
@@ -43,7 +44,8 @@ ql.hook_address(callback=inst_after_1st_malloc, address=0x55555555516e)
 # Enable debugger to listen at localhost address, default port 9999
 #ql.debugger = True
 #ql.debugger = "127.0.0.1:9999"  # GDB server listens to 127.0.0.1:9999
-
+ql.run()
+'''
 try:
     ql.run()
 except UcError as e:
@@ -54,5 +56,5 @@ except UcError as e:
     #alue_in_eip = bytearray.fromhex("{:x}".format(ql.reg.eip)).decode()
     #f sys.argv[1].find(value_in_eip,0,len(value_in_eip)) >= 0:
      #  print("Program overflow caused by user input")
-
+'''
 

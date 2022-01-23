@@ -1,0 +1,35 @@
+start_time        : 1641444347
+last_update       : 1641444558
+run_time          : 210
+fuzzer_pid        : 112510
+cycles_done       : 0
+cycles_wo_finds   : 0
+execs_done        : 2870
+execs_per_sec     : 13.61
+paths_total       : 15
+paths_favored     : 1
+paths_found       : 14
+paths_imported    : 0
+max_depth         : 2
+cur_path          : 0
+pending_favs      : 1
+pending_total     : 15
+variable_paths    : 0
+stability         : 100.00%
+bitmap_cvg        : 1.85%
+unique_crashes    : 13
+unique_hangs      : 0
+last_path         : 1641444508
+last_crash        : 1641444464
+last_hang         : 0
+execs_since_crash : 1373
+exec_timeout      : 120
+slowest_exec_ms   : 0
+peak_rss_mb       : 0
+cpu_affinity      : 0
+edges_found       : 1211
+var_byte_count    : 0
+afl_banner        : stackoverflow_arm
+afl_version       : ++2.66c
+target_mode       : qemu shmem_testcase 
+command_line      : /home/training/Desktop/sources/AFLplusplus/afl-fuzz -i ./input/ -o output_0105_0841/ -Q -m 50000 ./stackoverflow_arm @@
